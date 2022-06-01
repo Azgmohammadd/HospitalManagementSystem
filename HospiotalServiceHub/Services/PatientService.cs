@@ -34,7 +34,7 @@ namespace HospiotalServiceHub.Services
             }
         }
 
-        public async Task<ResponseModel<bool>> DeletePatient(string id)
+        public async Task<ResponseModel<bool>> DeletePatient(int id)
         {
             try
             {
@@ -71,6 +71,24 @@ namespace HospiotalServiceHub.Services
                 throw;
             }
 
+        }
+
+        public async Task<ResponseModel<PatientModel>> GetPatient(int id)
+        {
+            var data = _patients.Find(patient => patient._id == id);
+
+            try
+            {
+                return new ResponseModel<PatientModel>()
+                {
+                    Result = (PatientModel)data,
+                    HasError = false
+                };
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

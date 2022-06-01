@@ -7,10 +7,10 @@ namespace HospiotalServiceHub.IServices
     {
         Task<ResponseModel<IEnumerable<PatientModel>>> GetAllPatients();
 
-        Task<ResponseModel<PatientModel>> GetPatient(string id);
+        Task<ResponseModel<PatientModel>> GetPatient(int id);
 
         Task<ResponseModel<bool>> CreatePatient(PatientModel patient);
 
-        Task<ResponseModel<bool>> DeletePatient(string id);
+        Task<ResponseModel<bool>> DeletePatient(int id);
     }
 }

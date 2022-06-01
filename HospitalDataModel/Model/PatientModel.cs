@@ -5,7 +5,7 @@ namespace HospitalDataModel.Model
     public class PatientModel
     {
         [BsonId]
-        public string? _id { get; set; }
+        public int _id { get; set; }
 
         [BsonElement("firstName")]
         public string? firstName { get; set; }
