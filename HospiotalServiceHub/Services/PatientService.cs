@@ -14,6 +14,8 @@ namespace HospiotalServiceHub.Services
             _patients = dbClient.GetDatabase().GetCollection<PatientModel>("Patients");
         }
 
+
+
         public async Task<ResponseModel<bool>> CreatePatient(PatientModel patient)
         {
             try
@@ -27,6 +29,24 @@ namespace HospiotalServiceHub.Services
                 };
             }
             catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task<ResponseModel<bool>> DeletePatient(string id)
+        {
+            try
+            {
+                _patients.DeleteOne(patient => patient._id == id);
+
+                return new ResponseModel<bool>()
+                {
+                    Result = true,
+                    HasError = false
+                };
+            }
+            catch(Exception)
             {
                 throw;
             }
