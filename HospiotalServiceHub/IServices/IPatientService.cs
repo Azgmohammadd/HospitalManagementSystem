@@ -5,12 +5,14 @@ namespace HospiotalServiceHub.IServices
 {
     public interface IPatientService
     {
-        Task<ResponseModel<IEnumerable<PatientModel>>> GetAllPatients();
+        Task<ResponseModel<IEnumerable<PatientModel>>> GetAllPatients(int skip, int take);
 
-        Task<ResponseModel<PatientModel>> GetPatient(int id);
+        Task<ResponseModel<PatientModel>> GetPatient(long id);
 
         Task<ResponseModel<bool>> CreatePatient(PatientModel patient);
 
-        Task<ResponseModel<bool>> DeletePatient(int id);
+        Task<ResponseModel<bool>> DeletePatient(long id);
+
+        Task<ResponseModel<bool>> UpdatePatient(PatientModel patient);
     }
 }

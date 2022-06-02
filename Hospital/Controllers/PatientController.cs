@@ -14,12 +14,12 @@ namespace Hospital.Controllers
             _ipatientService = ipatientService;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Get()
+        [HttpGet("{skip}/{take}")]
+        public async Task<IActionResult> Get(int skip, int take)
         {
             try
             {
-                var result = _ipatientService.GetAllPatients();
+                var result = _ipatientService.GetAllPatients(skip, take);
                 return Ok(result);
 
             }catch(Exception e)
@@ -29,7 +29,7 @@ namespace Hospital.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> Get(long id)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace Hospital.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromBody] int id)
+        public async Task<IActionResult> Delete([FromBody] long id)
         {
             try
             {
@@ -70,5 +70,20 @@ namespace Hospital.Controllers
                 return Problem(e.Message);
             }
         }
+
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody] PatientModel patientModel)
+        {
+            try
+            {
+                var res = _ipatientService.UpdatePatient(patientModel);
+                return Ok(res);
+            }
+            catch(Exception e)
+            {
+                return Problem(e.Message);
+            }
+        }
+
     }
 }

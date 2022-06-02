@@ -20,7 +20,7 @@ namespace HospiotalServiceHub.Services
         {
             try
             {
-                 _patients.InsertOne(patient);
+                 await _patients.InsertOneAsync(patient);
 
                 return new ResponseModel<bool>()
                 {
@@ -34,11 +34,11 @@ namespace HospiotalServiceHub.Services
             }
         }
 
-        public async Task<ResponseModel<bool>> DeletePatient(int id)
+        public async Task<ResponseModel<bool>> DeletePatient(long id)
         {
             try
             {
-                _patients.DeleteOne(patient => patient._id == id);
+                var data = await _patients.FindOneAndDeleteAsync<PatientModel>(patient => patient._id == id);
 
                 return new ResponseModel<bool>()
                 {
@@ -52,14 +52,13 @@ namespace HospiotalServiceHub.Services
             }
         }
 
-        public async Task<ResponseModel<IEnumerable<PatientModel>>> GetAllPatients()
+        public async Task<ResponseModel<IEnumerable<PatientModel>>> GetAllPatients(int skip, int take)
         {
-            //TODO: await nadare
-
-            var data = _patients.Find(Patient => true).ToList();
 
             try
             {
+                var data =await _patients.Find<PatientModel>(Patient => true).SortBy(patient => patient._id).Skip(skip).Limit(take).ToListAsync<PatientModel>();
+                
                 return new ResponseModel<IEnumerable<PatientModel>>()
                 {
                     Result = data,
@@ -73,15 +72,34 @@ namespace HospiotalServiceHub.Services
 
         }
 
-        public async Task<ResponseModel<PatientModel>> GetPatient(int id)
+        public async Task<ResponseModel<PatientModel>> GetPatient(long id)
         {
-            var data = _patients.Find(patient => patient._id == id);
 
             try
             {
+                var data = await _patients.Find<PatientModel>(patient => patient._id == id).SingleAsync<PatientModel>();
+    
                 return new ResponseModel<PatientModel>()
                 {
-                    Result = (PatientModel)data,
+                    Result =  data,
+                    HasError = false
+                };
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task<ResponseModel<bool>> UpdatePatient(PatientModel patient)
+        {
+            try
+            {
+                var res =await _patients.FindOneAndReplaceAsync<PatientModel>(p => p._id == patient._id, patient);
+
+                return new ResponseModel<bool>()
+                {
+                    Result = true,
                     HasError = false
                 };
             }
