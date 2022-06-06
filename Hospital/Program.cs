@@ -1,20 +1,18 @@
 using HospiotalServiceHub;
 using HospiotalServiceHub.IServices;
 using HospiotalServiceHub.Services;
-using Newtonsoft.Json;
-using System.Text.Json;
-using System.Reflection;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//TODO: configuration chert zadam
+//TODO: configuration chert zadam?? dorost bayad beshe
 builder.Services.Configure<HospitalDBConfig>(builder.Configuration);
 
+// az to stack bardashtam nmidonam chie
 builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 // Add services to the container.
-builder.Services.AddSingleton<IDbClient, DbClient>();
+builder.Services.AddSingleton<IDbClient, DbClient>(); //chon to tool barname dar hale ejrast?
 builder.Services.AddScoped<IPatientService, PatientService>();
 builder.Services.AddScoped<IDoctorService, DoctorService>();
 builder.Services.AddControllers();

@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hospital", "Hospital\Hospit
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HospitalDataModel", "HospitalDataModel\HospitalDataModel.csproj", "{435106D7-778F-41B6-9FEB-3C769AA379D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedStorage", "SharedStorage\SharedStorage.csproj", "{C3111936-ADC0-44D4-BD20-752FF8F8B57B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedStorage", "SharedStorage\SharedStorage.csproj", "{C3111936-ADC0-44D4-BD20-752FF8F8B57B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HospiotalServiceHub", "HospiotalServiceHub\HospiotalServiceHub.csproj", "{DCD545BD-BBC8-4243-9230-477BB6586976}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HospiotalServiceHub", "HospiotalServiceHub\HospiotalServiceHub.csproj", "{DCD545BD-BBC8-4243-9230-477BB6586976}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\TestProject.csproj", "{9B59EDE6-9631-41E2-85FD-E5A81DDFA6F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{DCD545BD-BBC8-4243-9230-477BB6586976}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCD545BD-BBC8-4243-9230-477BB6586976}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCD545BD-BBC8-4243-9230-477BB6586976}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B59EDE6-9631-41E2-85FD-E5A81DDFA6F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B59EDE6-9631-41E2-85FD-E5A81DDFA6F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B59EDE6-9631-41E2-85FD-E5A81DDFA6F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B59EDE6-9631-41E2-85FD-E5A81DDFA6F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

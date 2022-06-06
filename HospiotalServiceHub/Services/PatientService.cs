@@ -1,5 +1,5 @@
 ﻿using HospiotalServiceHub.IServices;
-using HospitalDataModel.Model;
+using HospitalDataModel.ViewModel;
 using MongoDB.Driver;
 using SharedStorage.Models;
 
@@ -7,26 +7,22 @@ namespace HospiotalServiceHub.Services
 {
     public class PatientService : IPatientService
     {
-        private readonly IMongoCollection<PatientModel> _patients;
+        private readonly IMongoCollection<PatientViewModel> _patients;
 
         public PatientService(IDbClient dbClient)
         {
-            _patients = dbClient.GetDatabase().GetCollection<PatientModel>("Patients");
+            _patients = dbClient.GetDatabase().GetCollection<PatientViewModel>("Patients");
         }
 
 
 
-        public async Task<ResponseModel<bool>> CreatePatient(PatientModel patient)
+        public async Task<bool> CreatePatient(PatientViewModel patient)
         {
             try
             {
                  await _patients.InsertOneAsync(patient);
 
-                return new ResponseModel<bool>()
-                {
-                    Result = true,
-                    HasError = false
-                };
+                return true;
             }
             catch (Exception)
             {
@@ -34,17 +30,13 @@ namespace HospiotalServiceHub.Services
             }
         }
 
-        public async Task<ResponseModel<bool>> DeletePatient(long id)
+        public async Task<bool> DeletePatient(long id)
         {
             try
             {
-                var data = await _patients.FindOneAndDeleteAsync<PatientModel>(patient => patient._id == id);
+                var data = await _patients.FindOneAndDeleteAsync<PatientViewModel>(patient => patient._id == id);
 
-                return new ResponseModel<bool>()
-                {
-                    Result = true,
-                    HasError = false
-                };
+                return true;
             }
             catch(Exception)
             {
@@ -52,18 +44,14 @@ namespace HospiotalServiceHub.Services
             }
         }
 
-        public async Task<ResponseModel<IEnumerable<PatientModel>>> GetAllPatients(int skip, int take)
+        public async Task<IEnumerable<PatientViewModel>> GetAllPatients(int skip, int take)
         {
 
             try
             {
-                var data =await _patients.Find<PatientModel>(Patient => true).SortBy(patient => patient._id).Skip(skip).Limit(take).ToListAsync<PatientModel>();
-                
-                return new ResponseModel<IEnumerable<PatientModel>>()
-                {
-                    Result = data,
-                    HasError = false
-                };
+                var data =await _patients.Find<PatientViewModel>(Patient => true).SortBy(patient => patient._id).Skip(skip).Limit(take).ToListAsync<PatientViewModel>();
+
+                return data;
             }
             catch (Exception)
             {
@@ -72,18 +60,14 @@ namespace HospiotalServiceHub.Services
 
         }
 
-        public async Task<ResponseModel<PatientModel>> GetPatient(long id)
+        public async Task<PatientViewModel> GetPatient(long id)
         {
 
             try
             {
-                var data = await _patients.Find<PatientModel>(patient => patient._id == id).SingleAsync<PatientModel>();
-    
-                return new ResponseModel<PatientModel>()
-                {
-                    Result =  data,
-                    HasError = false
-                };
+                var data = await _patients.Find<PatientViewModel>(patient => patient._id == id).SingleAsync<PatientViewModel>();
+
+                return data;
             }
             catch (Exception)
             {
@@ -91,22 +75,27 @@ namespace HospiotalServiceHub.Services
             }
         }
 
-        public async Task<ResponseModel<bool>> UpdatePatient(PatientModel patient)
+        public async Task<bool> UpdatePatient(PatientViewModel patient)
         {
             try
             {
-                var res =await _patients.FindOneAndReplaceAsync<PatientModel>(p => p._id == patient._id, patient);
+                var result =await _patients.FindOneAndReplaceAsync<PatientViewModel>(p => p._id == patient._id, patient);
 
-                return new ResponseModel<bool>()
-                {
-                    Result = true,
-                    HasError = false
-                };
+                return true;
             }
             catch (Exception)
             {
                 throw;
             }
+        }
+
+        public bool isEven(int n) 
+        {
+            if(n%2 == 0)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
