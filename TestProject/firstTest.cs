@@ -17,7 +17,7 @@ namespace TestProject
         [Fact]
         public void getTest()
         {
-            bool result = patientService.isEven(2);
+            bool result = patientService.isEven(3);
 
             Assert.False(result,"3 is not be even");
         }
