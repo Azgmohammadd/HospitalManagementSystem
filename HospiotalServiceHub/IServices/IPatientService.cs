@@ -21,6 +21,7 @@ namespace HospiotalServiceHub.IServices
         //Task<ResponseModel<bool>> UpdatePatient(PatientViewModel patient);
         Task<bool> UpdatePatient(PatientViewModel patient);
 
+        //add for test
         bool isEven(int number);
     }
 }
