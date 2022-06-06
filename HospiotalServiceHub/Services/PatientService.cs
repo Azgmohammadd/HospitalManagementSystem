@@ -1,7 +1,6 @@
 ﻿using HospiotalServiceHub.IServices;
 using HospitalDataModel.ViewModel;
 using MongoDB.Driver;
-using SharedStorage.Models;
 
 namespace HospiotalServiceHub.Services
 {

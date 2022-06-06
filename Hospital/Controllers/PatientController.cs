@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using HospiotalServiceHub.IServices;
-using HospitalDataModel.Model;
 using HospitalDataModel.ViewModel;
 using SharedStorage.Extensions;
 using SharedStorage.Models;
