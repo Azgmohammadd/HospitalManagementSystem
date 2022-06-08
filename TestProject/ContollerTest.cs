@@ -33,40 +33,41 @@ namespace TestProject
         [Fact]
         public async void DeleteTest1()
         {
-            var cpmpared = await patientController.Delete(1);
+            var compared = await patientController.Delete(1);
 
-            Assert.IsType<OkObjectResult>(cpmpared);
+            Assert.IsType<OkObjectResult>(compared);
+        
         }
 
         [Fact]
         public async void GetTest1()
         {
-            var cpmpared = await patientController.Get(1);
+            var compared = await patientController.Get(1);
 
-            Assert.IsType<OkObjectResult>(cpmpared);
+            Assert.IsType<OkObjectResult>(compared);
         }
         [Fact]
         public async void GetAllTest1()
         {
-            var cpmpared = await patientController.Get(1, 4);
+            var compared = await patientController.Get(1, 4);
 
-            Assert.IsType<OkObjectResult>(cpmpared);
+            Assert.IsType<OkObjectResult>(compared);
         }
 
         [Fact]
         public async void CreateTest1()
         {
-            var cpmpared = await patientController.Post(model);
+            var compared = await patientController.Post(model);
 
-            Assert.IsType<OkObjectResult>(cpmpared);
+            Assert.IsType<OkObjectResult>(compared);
         }
 
         [Fact]
         public async void UpdateTest1()
         {
-            var cpmpared = await patientController.Put(model);
+            var compared = await patientController.Put(model);
 
-            Assert.IsType<OkObjectResult>(cpmpared);
+            Assert.IsType<OkObjectResult>(compared);
         }
     }
 }
