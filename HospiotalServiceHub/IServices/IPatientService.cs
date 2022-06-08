@@ -15,6 +15,6 @@ namespace HospiotalServiceHub.IServices
         Task<bool> UpdatePatient(PatientViewModel patient);
 
         //add for test
-        bool isEven(int number);
+        bool IsEven(int number);
     }
 }

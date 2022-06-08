@@ -1,5 +1,4 @@
-﻿using HospitalDataModel.Model;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 
 namespace HospiotalServiceHub

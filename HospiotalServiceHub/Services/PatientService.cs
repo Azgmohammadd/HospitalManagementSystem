@@ -91,13 +91,20 @@ namespace HospiotalServiceHub.Services
 
 
         //add for testing
-        public bool isEven(int n) 
+        public bool IsEven(int n)
         {
-            if(n%2 == 0)
+            try
             {
-                return true;
+                if (n % 2 == 0)
+                {
+                    return true;
+                }
+                return false;
             }
-            return false;
-        }
+            catch (Exception)
+            {
+                throw;
+            }
+        } 
     }
 }
