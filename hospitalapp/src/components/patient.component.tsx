@@ -1,37 +1,57 @@
+import { connect } from 'react-redux';
 import React from 'react'
+import IPatientService from '../interfaces/IPatient.service';
+import { AppDispatch } from '../redux/store';
 import PatientService from '../services/Patient.service';
+import { getPatients } from '../redux/actions/patient.actions';
+import { getAllAction } from '../redux/actions/patient.newactio';
 
 class PatientComponent extends React.Component<any, any> {
 
-    patservice! : PatientService;
+    patservice! : IPatientService;
 
     constructor(props: any) {
         super(props);
         this.state = {
-            id: 0,
-            skip:0,
+            id: 1,
+            skip:1,
             take:3,
-            patientService : new PatientService()
         };
         this.patservice = new PatientService();
-
-        // this.getAllPatients = this.getAllPatients.bind(this);
+        this.getdata = this.getdata.bind(this);
     }
 
+    async getdata(){
+        const data = await this.patservice.GetAllPatients(this.state.skip, this.state.take);
+
+        console.log(data);
+    }
 
     render() {
-        // const data = this.getAllPatients(this.state.skip, this.state.take);
-        const data = this.patservice.GetAllPatients(this.state.skip, this.state.take);
-
-        const d= this.patservice.GetPatientById(1);
-        console.log(data);
-        
         return (
             <div>
                 patient.component
+                <button onClick={() => console.log(this.props.state)}> show map state</button>
+                <button onClick={this.getdata}> show data</button>
+                <button onClick={() => this.props.getAllPatients(this.state.skip, this.state.take)}> disptach action</button>
             </div>
         )
     }
 }
 
-export default PatientComponent;
+
+function mapStateToProps(state: any){
+    return {
+        state
+    }
+}
+
+
+function mapDispatchToProps(dispatch: AppDispatch){
+    return {
+        getAllPatients: function(skip: number, take: number){
+            dispatch(getAllAction(skip, take))
+        }
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(PatientComponent);
