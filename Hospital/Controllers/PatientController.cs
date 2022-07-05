@@ -3,6 +3,7 @@ using HospiotalServiceHub.IServices;
 using HospitalDataModel.ViewModel;
 using SharedStorage.Extensions;
 using SharedStorage.Models;
+using Microsoft.AspNetCore.Cors;
 
 namespace Hospital.Controllers
 {
@@ -17,6 +18,7 @@ namespace Hospital.Controllers
         }
 
         [HttpGet("{skip}/{take}")]
+        [EnableCors("MyPolicy")]
         public async Task<IActionResult> Get(int skip, int take)
         {
             try

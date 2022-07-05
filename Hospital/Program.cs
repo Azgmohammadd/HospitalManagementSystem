@@ -5,6 +5,12 @@ using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var MyPolicy = "MyPolicy";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyPolicy, p => p.WithOrigins("*"));
+});
 //TODO: configuration chert zadam?? dorost bayad beshe
 builder.Services.Configure<HospitalDBConfig>(builder.Configuration);
 
@@ -29,7 +35,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("MyPolicy");
+
+
 app.UseHttpsRedirection();
+
+app.UseRouting();
+
+app.UseCors (MyPolicy);
 
 app.UseAuthorization();
 
