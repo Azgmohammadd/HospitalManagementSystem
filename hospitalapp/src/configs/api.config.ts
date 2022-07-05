@@ -1,4 +1,4 @@
-const api_url = 'https://localhost:7272/api';
+const api_url = 'https://localhost:7272';
 
 const patient_url = `${api_url}/Patient`;
 
