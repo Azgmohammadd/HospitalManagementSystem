@@ -24,8 +24,10 @@ class PatientSerivce implements IPatientService{
     CreatePatient(model: IPatientModel): Promise<void> {
         throw new Error("Method not implemented.");
     }
-    UpdatePatient(model: IPatientModel): Promise<void> {
-        throw new Error("Method not implemented.");
+    async UpdatePatient(model: IPatientModel): Promise<void> {
+        return await axios.put(`${patient_url}`, model)
+            .then(res => res.data)
+            .catch(error => console.log(error));
     }
     DeletePatient(id: number): Promise<void> {
         throw new Error("Method not implemented.");
