@@ -9,7 +9,7 @@ var MyPolicy = "MyPolicy";
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: MyPolicy, p => p.WithOrigins("*"));
+    options.AddPolicy(name: MyPolicy, p => p.WithOrigins("*").AllowAnyMethod().AllowAnyHeader());
 });
 //TODO: configuration chert zadam?? dorost bayad beshe
 builder.Services.Configure<HospitalDBConfig>(builder.Configuration);
