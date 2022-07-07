@@ -1,9 +1,10 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { patientSlice } from "./reducers/patient.reducer";
-
+// import { patientReducer } from "./reducers/patient.reducer";
+import {getReducer} from './reducers/getReducer'
+import { patientSlice } from './reducers/patient.reducer'
 
 export const store = configureStore({
-    reducer: patientSlice.reducer
+    reducer: combineReducers({getReducer, patientSlice})
 })
 
 export type AppDispatch = typeof store.dispatch;
