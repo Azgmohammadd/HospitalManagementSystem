@@ -9,6 +9,8 @@ namespace Hospital.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [EnableCors("MyPolicy")]
+
     public class PatientController : ControllerBase
     {
         private readonly IPatientService _ipatientService;
@@ -18,7 +20,6 @@ namespace Hospital.Controllers
         }
 
         [HttpGet("{skip}/{take}")]
-        [EnableCors("MyPolicy")]
         public async Task<IActionResult> Get(int skip, int take)
         {
             try
